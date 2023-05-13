@@ -63,10 +63,10 @@ const produtos = [
     },
 ]
 const carrinho = ref({
-    itens:[],
+    itens: [],
     total: 0,
 })
-function addCarrinho (index) {
+function addCarrinho(index) {
     carrinho.value.produtos.push({
         id: carrinho.value.length + 1,
         nome: produtos.value[index].nome,
@@ -82,16 +82,15 @@ function incrementar(index) {
 function decrementar(index) {
     produtos.value.splice(index, 1)
 }
-function remover(index){
-    carrinho.value.total =  carrinho.value.total - carrinho.value.produtos[index].valorTotal
-    carrinho.value.produtos.splice(index,1)
+function remover(index) {
+    carrinho.value.total = carrinho.value.total - carrinho.value.produtos[index].valorTotal
+    carrinho.value.produtos.splice(index, 1)
 }
-const mostrar = ref(false)
 </script>
 
 <template>
     <div class="arrayProdutos">
-        <div class="produtos" v-for="produto in produtos" :key="produto.id" >
+        <div class="produtos" v-for="produto in produtos" :key="produto.id">
             <p>{{ produto.id }}- {{ produto.nome }}</p>
             <p>Preço: {{ produto.preco }}</p>
             <p>Quantidade: {{ produto.quantidade }}</p>
@@ -101,14 +100,14 @@ const mostrar = ref(false)
                 <button class="botaoAdd" @click="addCarrinho(index)">Adicionar</button>
             </div>
         </div>
-        <button @click="mostrar" type="submit">carrinho</button>
     </div>
     <hr>
 
-    <div class="listCarrinnho" v-if="mostrar">
-        <div class="carrinho" v-for="(item, index) in carrinho.produtos"> {{ produto.nome }} - {{ produto.valorTotal.toFixed(2) }} >
+    <div class="listCarrinnho">
+        <div class="carrinho" v-for="(item, index) in carrinho.produtos"> {{ produto.nome }} - {{
+            produto.valorTotal.toFixed(2) }} >
             <button @click="incrementar(index)">+</button>
-                {{ produto.quantidade }}
+            {{ produto.quantidade }}
             <button @click="decrementar(index)">-</button>
             <button @click="remover(index)">Remover</button>
         </div>
@@ -155,7 +154,8 @@ const mostrar = ref(false)
     margin-top: 5%;
     margin-bottom: 10px;
 }
-.botCarrinho{
+
+.botCarrinho {
     color: black;
     background-color: white;
 }
