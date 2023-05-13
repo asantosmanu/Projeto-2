@@ -86,11 +86,12 @@ function remover(index) {
     carrinho.value.total = carrinho.value.total - carrinho.value.produtos[index].valorTotal
     carrinho.value.produtos.splice(index, 1)
 }
+
 </script>
 
 <template>
     <div class="arrayProdutos">
-        <div class="produtos" v-for="produto in produtos" :key="produto.id">
+        <div class="produtos" v-for="produto in produtos">
             <p>{{ produto.id }}- {{ produto.nome }}</p>
             <p>Preço: {{ produto.preco }}</p>
             <p>Quantidade: {{ produto.quantidade }}</p>
@@ -102,14 +103,15 @@ function remover(index) {
         </div>
     </div>
     <hr>
-
-    <div class="listCarrinnho">
+    <button class="botCarrinho" @click="listCarrinnho">Ver carrinho</button>
+    <div class="listCarrinho">
         <div class="carrinho" v-for="(item, index) in carrinho.produtos"> {{ produto.nome }} - {{
             produto.valorTotal.toFixed(2) }} >
             <button @click="incrementar(index)">+</button>
             {{ produto.quantidade }}
             <button @click="decrementar(index)">-</button>
             <button @click="remover(index)">Remover</button>
+            <button class="produtos">Ver produtos</button>
         </div>
     </div>
 </template> 
@@ -119,18 +121,18 @@ function remover(index) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 60%;
-    margin: 0 auto;
+    margin: auto;
     gap: 20px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .produtos {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(46, 45, 141);
     border-radius: 10px;
     color: aliceblue;
-    background-image: linear-gradient(to right, rgb(15, 17, 129), black);
+    background-image:linear-gradient(to right, rgb(72, 9, 80), rgb(0, 0, 0));
     margin-top: 1%;
     margin-left: 5%;
     margin-right: 5%;
@@ -138,25 +140,43 @@ function remover(index) {
 
 .botaoDec {
     color: rgb(255, 255, 255);
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(0, 0, 0);
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .botaoInc {
     color: rgb(255, 255, 255);
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(0, 0, 0);
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .botaoAdd {
     color: rgb(255, 255, 255);
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(0, 0, 0);
     margin-top: 5%;
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .botCarrinho {
-    color: black;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    color: aliceblue;
+    background-image:linear-gradient(to right, rgb(72, 9, 80), rgb(0, 0, 0));
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.listCarrinho{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 60%;
+    margin: auto;
+    gap: 20px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 </style>
