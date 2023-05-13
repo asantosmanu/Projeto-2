@@ -86,31 +86,31 @@ function remover(index){
     carrinho.value.total =  carrinho.value.total - carrinho.value.produtos[index].valorTotal
     carrinho.value.produtos.splice(index,1)
 }
+const mostrar = ref(false)
 </script>
 
 <template>
     <div class="arrayProdutos">
-        <div class="produtos" v-for="produto in produtos" :key="produto.id" v-if="mostrar">
+        <div class="produtos" v-for="produto in produtos" :key="produto.id" >
             <p>{{ produto.id }}- {{ produto.nome }}</p>
             <p>Preço: {{ produto.preco }}</p>
             <p>Quantidade: {{ produto.quantidade }}</p>
             <div>
                 <button class="botaoDec" @click="decrementar(index)">-</button>
                 <button class="botaoInc" @click="incrementar(index)">+</button>
-                <button class="botaoAdd" @click="adicionar(index)">Adicionar</button>
+                <button class="botaoAdd" @click="addCarrinho(index)">Adicionar</button>
             </div>
         </div>
+        <button @click="mostrar" type="submit">carrinho</button>
     </div>
     <hr>
 
-    <button class="botCarrinho" @click="mostrar = !mostrar" type="submit" >Carrinho</button>
-    <div class="listCarrinnho">
-        <div class="carrinho" v-for="(item, index) in carrinho.produtos"> {{ produto.nome }} - {{ produto.valorTotal.toFixed(2) }} v-else >
+    <div class="listCarrinnho" v-if="mostrar">
+        <div class="carrinho" v-for="(item, index) in carrinho.produtos"> {{ produto.nome }} - {{ produto.valorTotal.toFixed(2) }} >
             <button @click="incrementar(index)">+</button>
                 {{ produto.quantidade }}
             <button @click="decrementar(index)">-</button>
             <button @click="remover(index)">Remover</button>
-            <button @click="mostrar = !mostrar" type="submit">Produtos</button>
         </div>
     </div>
 </template> 
